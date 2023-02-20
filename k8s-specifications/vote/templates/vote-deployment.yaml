@@ -16,6 +16,9 @@ spec:
     spec:
       containers:
       - image: dockersamples/examplevotingapp_vote
+        {{- if .Values.debug.enabled }}
+        command: [{{ .Values.debug.startup.command }}]
+        {{- end }}
         name: vote
         ports:
         - containerPort: 80

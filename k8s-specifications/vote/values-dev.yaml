@@ -1,0 +1,15 @@
+# Default values for vote.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+debug:
+  enabled: true
+  startup:
+    command: '"gunicorn", "app:app", "-b", "0.0.0.0:80", "--log-file", "-", "--access-logfile", "-","--log-level=DEBUG", "--workers", "4", "--keep-alive", "0"'
+
+
+service:
+  type: NodePort
+  nodeport: 31005
+
+

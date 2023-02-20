@@ -5,12 +5,11 @@ metadata:
     app: vote
   name: vote
 spec:
-  type: NodePort
+  type: {{ .Values.service.type }}
   ports:
   - name: "vote-service"
     port: 5000
     targetPort: 80
-    nodePort: 31000
+    nodePort: {{ .Values.service.nodeport }}
   selector:
     app: vote
-  
