@@ -1,0 +1,16 @@
+environments:
+  development:
+    service:
+      nodeport: 31009
+
+releases:
+- name: vote
+  chart: vote
+- name: db
+  chart: db
+- name: result
+  chart: result
+- name: redis
+  chart: redis
+- name: worker
+  chart: worker
