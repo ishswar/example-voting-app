@@ -1,8 +1,4 @@
-environments:
-  development:
-    service:
-      nodeport: 31009
-
+---
 releases:
 - name: vote
   chart: vote
