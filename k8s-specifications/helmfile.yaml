@@ -1,7 +1,6 @@
 ---
 releases:
-- name: vote
-  chart: vote
+
 - name: db
   chart: db
 - name: result
@@ -10,3 +9,5 @@ releases:
   chart: redis
 - name: worker
   chart: worker
+- name: vote
+  chart: vote
