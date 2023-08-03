@@ -8,3 +8,7 @@ debug:
 service:
   type: NodePort
   nodeport: 31004
+
+#result:
+#  service:
+#    nodeport: 31025
