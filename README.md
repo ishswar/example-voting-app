@@ -3,10 +3,6 @@ _Main branch - at this levle we only have YAML files no helm charts or helmfile 
 
 ---
 
-Check out Git Repo and Deploy
-
-_In this step we are not dot using Helm yet - we are just using Kubernetes yaml/manifest file to deploy applications to understand how all it works_
-
 <br>
 
 # Deploying using yaml/manifest files 
