@@ -1,7 +1,7 @@
 
 Check out Git Repo and Deploy
 
-_In this step we are not dot using Helm yet - we are just using Kubernetes yaml/manifest file to deploy applications to understand how all it works_
+_In this branch we deploy same set of applications/charts but using Helmfile_
 
 <br>
 
