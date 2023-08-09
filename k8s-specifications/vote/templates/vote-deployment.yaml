@@ -17,7 +17,7 @@ spec:
       volumes:
         - name: app-data
           persistentVolumeClaim:
-            claimName: my-pvc # PVC that provides /app storage
+            claimName: vote-pvc # PVC that provides /app storage
       initContainers:
         - name: init-copy
           image: dockersamples/examplevotingapp_vote
