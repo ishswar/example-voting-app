@@ -3,7 +3,10 @@
 # Declare variables to be passed into your templates.
 
 debug:
-  enabled: false
+  enabled: true
+  startup:
+    command: '"gunicorn", "app:app", "-b", "0.0.0.0:80", "--log-file", "-", "--access-logfile", "-","--log-level=DEBUG", "--workers", "4", "--keep-alive", "0"'
+
 
 service:
   type: NodePort

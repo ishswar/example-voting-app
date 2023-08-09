@@ -13,12 +13,12 @@ spec:
       volumes:
         - name: app-data
           persistentVolumeClaim:
-            claimName: my-pvc # PVC that provides /app storage
+            claimName: vote-pvc # PVC that provides /app storage
       restartPolicy: OnFailure
       containers:
       - name: info
         image: busybox
-        command: ["/bin/sh", "-c", "ls -la /app"]
+        command: ["/bin/sh", "-c", "echo 'Updating template' && sed -i 's/vs/or/g' /app/templates/index.html && echo 'Done updating template'"]
         volumeMounts:
         - mountPath: /app
           name: app-data
