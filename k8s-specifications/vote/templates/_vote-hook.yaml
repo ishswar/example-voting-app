@@ -18,7 +18,21 @@ spec:
       containers:
       - name: info
         image: busybox
-        command: ["/bin/sh", "-c", "echo 'Updating template' && sed -i 's/vs/or/g' /app/templates/index.html && echo 'Done updating template'"]
+        #command: ["/bin/sh", "-c", "echo 'Updating template' && sed -i 's/vs/or/g' /app/templates/index.html && echo 'Done updating template'"]
+        command: ["/bin/sh"]
+        args:
+          - -c
+          - |
+            # Wait for index.html file
+            while [ ! -f "/app/templates/index.html" ]; do
+              echo "Waiting for index.html file to be ready..."
+              sleep 2
+            done
+            echo "File exists, proceeding..."
+            echo 'Updating template'
+            sed -i 's/vs/or/g' /app/templates/index.html
+            echo 'Done updating template'
+            curl -I http://localhost || { echo 'Looks like server is not yet up'; }
         volumeMounts:
         - mountPath: /app
           name: app-data
