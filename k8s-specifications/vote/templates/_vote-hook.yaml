@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ .Release.Name }}-info"
+  annotations:
+    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-weight": "10"
+  labels:
+    app: "{{ .Release.Name }}"
+spec:
+  template:
+    spec:
+      volumes:
+        - name: app-data
+          persistentVolumeClaim:
+            claimName: my-pvc # PVC that provides /app storage
+      restartPolicy: OnFailure
+      containers:
+      - name: info
+        image: busybox
+        command: ["/bin/sh", "-c", "ls -la /app"]
+        volumeMounts:
+        - mountPath: /app
+          name: app-data

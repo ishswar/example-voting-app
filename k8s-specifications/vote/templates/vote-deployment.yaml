@@ -1,3 +1,4 @@
+# vote-deploy.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -14,6 +15,17 @@ spec:
       labels:
         app: vote
     spec:
+      volumes:
+        - name: app-data
+          persistentVolumeClaim:
+            claimName: my-pvc # PVC that provides /app storage
+      initContainers:
+        - name: init-copy
+          image: dockersamples/examplevotingapp_vote
+          command: ["sh", "-c", "cp -r /app/* /mnt/app"]
+          volumeMounts:
+          - mountPath: /mnt/app
+            name: app-data
       containers:
       - image: dockersamples/examplevotingapp_vote
         {{- if .Values.debug.enabled }}
@@ -23,3 +35,6 @@ spec:
         ports:
         - containerPort: 80
           name: vote
+        volumeMounts:
+        - mountPath: /app
+          name: app-data
