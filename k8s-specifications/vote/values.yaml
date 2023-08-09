@@ -7,4 +7,4 @@ debug:
 
 service:
   type: NodePort
-  nodeport: 31004
+  nodeport: 31001
