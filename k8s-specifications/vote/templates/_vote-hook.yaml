@@ -67,7 +67,8 @@ spec:
     args:
       - -c
       - |
-        {# Wait for index.html file
+        {
+        # Wait for index.html file
         while [ ! -f "/app/templates/index.html" ]; do
           echo "Waiting for index.html file to be ready..."
           sleep 2
@@ -78,11 +79,10 @@ spec:
         echo 'Done updating template'
         # Wait until curl succeeds
         until curl -Is http://vote:5000 | head -1 | grep -q "HTTP/1.1 200"; do
-            echo "Waiting for response..."
+            echo "Waiting for response... from vote app"
             sleep 5
         done
         echo "Received successful response!"
-        curl -I http://vote:5000 || { echo 'Looks like server is not yet up'; }
         } | tee /app/post-hook-output.txt
     volumeMounts:
     - mountPath: /app
