@@ -8,6 +8,7 @@ metadata:
     "helm.sh/hook": post-install,post-upgrade
     "helm.sh/hook-weight": "10"
     # "helm.sh/hook-delete-policy": hook-succeeded # Uncomment this -> This will tell Helm to cleanup this Job/Pod after it succeeds
+    # --
   labels:
     app: "{{ .Release.Name }}"
 spec:
