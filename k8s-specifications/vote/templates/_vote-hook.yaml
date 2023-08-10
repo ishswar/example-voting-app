@@ -1,11 +1,11 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: "{{ .Release.Name }}-task"
+  name: "{{ .Release.Name }}-post-task"
   annotations:
     "helm.sh/hook": post-install,post-upgrade
     "helm.sh/hook-weight": "10"
-    "helm.sh/hook-delete-policy": hook-succeeded
+    # "helm.sh/hook-delete-policy": hook-succeeded # Uncomment this -> This will tell Helm to cleanup this Job/Pod after it succeeds
   labels:
     app: "{{ .Release.Name }}"
 spec:
@@ -19,7 +19,6 @@ spec:
       containers:
       - name: task
         image: radial/busyboxplus:git
-        #command: ["/bin/sh", "-c", "echo 'Updating template' && sed -i 's/vs/or/g' /app/templates/index.html && echo 'Done updating template'"]
         command: ["/bin/sh"]
         args:
           - -c
