@@ -3,6 +3,8 @@ kind: Job
 metadata:
   name: "{{ .Release.Name }}-post-task"
   annotations:
+    # This is what defines this resource as a hook. Without this line, the
+    # job is considered part of the release.
     "helm.sh/hook": post-install,post-upgrade
     "helm.sh/hook-weight": "10"
     # "helm.sh/hook-delete-policy": hook-succeeded # Uncomment this -> This will tell Helm to cleanup this Job/Pod after it succeeds
