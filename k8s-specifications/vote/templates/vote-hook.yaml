@@ -20,7 +20,7 @@ spec:
             claimName: vote-pvc # PVC that provides /app storage
         - name: config-volume
           configMap:
-            name: myscript # Mount Config Map file
+            name: post-install-script # Mount Config Map file / name of config-map that holds the script
             defaultMode: 0777
       restartPolicy: OnFailure
       containers:
@@ -31,7 +31,7 @@ spec:
           - -c
           - |
             {
-            /config/myscript.sh
+            /config/post-install.sh
             } | tee /app/post-hook-output.txt
         volumeMounts:
         - mountPath: /app

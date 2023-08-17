@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: post-install-script
+data:
+ post-install.sh: |-
+{{ .Files.Get "postinstall.sh" | indent 4}}
